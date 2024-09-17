@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "gen-qrcode-app/*": ["./src/*"]
+    }
+  }
+}
