@@ -6,10 +6,10 @@ export default async function handler(req, res) {
             res.status(405).end(`Method ${req.method} Not Allowed`)
         }
         const { id } = req.query
-        const result = datas.filter((data) => (data.id == id))
+        const result = datas.find((data) => (data.id == id))
         console.log(result);
         
-        res.redirect(result[0].oldUrl)
+        res.redirect(result.oldUrl)
     } catch (error) {
         res.status(500).end(`Internal Server Error: ${error.message}`)
     }

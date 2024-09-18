@@ -5,63 +5,68 @@ import { useState } from 'react';
 export default function Home() {
   const [text, setText] = useState('');
   const [qrCode, setQrCode] = useState('');
-
   const [link, setLink] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Send a POST request to the API
-    const responseQrCode = await fetch('/api/gen-qrcode', {
+    const option = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ text }),
-    });
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text }),
+    }
 
-    const responseLink = await fetch('/api/gen-shorturl', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ text }),
-    });
+    const [ resQR, resLink ] = await Promise.all([
+      fetch('/api/gen-qrcode', option),
+      fetch('/api/gen-shorturl', option)
+    ])
+    
+    const dataQrCode = await resQR.json();
+    const dataLink = await resLink.json();
 
-    const dataQrCode = await responseQrCode.json();
-    const dataLink = await responseLink.json();
-
-    if (responseQrCode.ok && responseLink.ok) {
+    if (resQR.ok && resLink.ok) {
       setLink(dataLink.shortUrl);
       setQrCode(dataQrCode.qrCode);
     } else {
-      console.error('Failed to generate QR code:', dataQrCode.message);
-      console.error('Failed to generate short URL:', dataLink.message);
+      alert('Failed to generate Please refresh page');
     }
   };
+
+  const copyLink = (e) => {
+    navigator.clipboard.writeText(link)
+  }
+
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>QR Code Generator</h1>
-      <form onSubmit={handleSubmit}>
-        <textarea 
-          placeholder="Enter text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button type="submit">Generate QR Code</button>
-      </form>
+    <div className='div-body'>
+      <div className='content'>
+        <h1>Lets's Get Generate</h1>
+        <form onSubmit={handleSubmit} className='from-div'>
+          <input
+            type='text'
+            placeholder="Enter the link here"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+          <button type="submit">Generate</button>
+        </form>
 
-      {qrCode && (
-        <div>
-          <h3>Your QR Code:</h3>
-          <img src={qrCode} alt="Generated QR Code" />
-        </div>
-      )}
+        {qrCode && (
+          <div className='qr-code'>
+            <h3>Your QR Code:</h3>
+            <img src={qrCode} alt="Generated QR Code" />
+          </div>
+        )}
 
-      {link && (
-        <div>
-          <a href={link}> {link} </a>
-        </div>
-      )}
+        {link && (
+          <div className='short-url'>
+            <div className='link-url'>
+              <label href={link}> {link} </label>
+            </div>
+            <div className='clipboard' onClick={copyLink}>COPY</div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

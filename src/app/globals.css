@@ -14,6 +14,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background: #f3f3f3;
 }
 
 body {
@@ -33,6 +34,116 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+h1 {
+  color: #ABD1DC;
+  margin-bottom: 30px;
+}
+
+input[type=text] {
+  height: 60px;
+  width: 650px;
+  padding-left: 20px;
+  border-radius: 10px;
+  font-size: larger;
+  position: relative;
+  border: 1px solid #D3E7EE;
+  outline: none;
+}
+
+input[type=text]:focus {
+  border: 3px solid #ABD1DC;
+}
+
+button {
+  margin-left: -25px;
+  text-align: end;
+  height: 60px;
+  width: 180px;
+  border-radius: 10px;
+  padding-right: 30px;
+  cursor: pointer;
+  background: #ABD1DC;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: large;
+  font-weight: 600;
+  color: white;
+  border: 1px solid #D3E7EE;
+  transition: 0.5s;
+}
+
+button:hover {
+  background: #7097AB;
+  transition: 0.5s;
+}
+
+.from-div {
+  display: flex;
+  justify-content: center;
+}
+
+.div-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  padding: 50px;
+  background: #f3f3f3;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  width: 900px;
+  min-height: 250px;
+  max-height: auto;
+  box-shadow: 0px 0px 8px #cccccc;
+  background: #ffffff;
+}
+
+.qr-code {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.short-url {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+}
+
+.link-url {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 340px;
+  border: 1px solid #ABD1DC;
+  outline: none;
+}
+
+.clipboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 60px;
+  background-color: #ABD1DC;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: small;
+  transition: 0.5s;
+}
+
+.clipboard:hover {
+  background-color: #7097AB;
+  transition: 0.5s;
 }
 
 @media (prefers-color-scheme: light) {
