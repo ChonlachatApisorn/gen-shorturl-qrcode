@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 
+import QRCode from 'qrcode';
+
 export default function Home() {
   const [text, setText] = useState('');
   const [qrCode, setQrCode] = useState('');
@@ -9,25 +11,24 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const option = {
+
+    const qrCodeDataURL = await QRCode.toDataURL(text);
+    
+    const resLink = await fetch('/api/gen-shorturl', {
       method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ text }),
-    }
+    })
+    console.log('resLink: ', resLink.shortUrl);
+    console.log('resLink: ', typeof(resLink));
 
-    const [ resQR, resLink ] = await Promise.all([
-      fetch('/api/gen-qrcode', option),
-      fetch('/api/gen-shorturl', option)
-    ])
-    
-    const dataQrCode = await resQR.json();
     const dataLink = await resLink.json();
 
-    if (resQR.ok && resLink.ok) {
+    if (resLink.ok) {
       setLink(dataLink.shortUrl);
-      setQrCode(dataQrCode.qrCode);
+      setQrCode(qrCodeDataURL)
     } else {
       alert('Failed to generate Please refresh page');
     }

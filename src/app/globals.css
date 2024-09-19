@@ -45,6 +45,7 @@ input[type=text] {
   height: 60px;
   width: 650px;
   padding-left: 20px;
+  padding-right: 20px;
   border-radius: 10px;
   font-size: larger;
   position: relative;
