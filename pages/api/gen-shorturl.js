@@ -1,7 +1,7 @@
 import shortid from 'shortid';
 
+import { config } from '../../config/config';
 import datas from '../../databases/data';
-import config from '../config/config';
 
 export default async function handler(req, res) {
     try {
