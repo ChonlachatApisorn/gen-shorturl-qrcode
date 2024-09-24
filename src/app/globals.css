@@ -43,13 +43,13 @@ h1 {
 
 input[type=text] {
   height: 60px;
-  width: 650px;
+  width: 600px;
   padding-left: 20px;
   padding-right: 20px;
-  border-radius: 10px;
+  border-radius: 10px 0px 0px 10px;
   font-size: larger;
   position: relative;
-  border: 1px solid #D3E7EE;
+  border: 1px solid #ABD1DC;
   outline: none;
 }
 
@@ -58,24 +58,24 @@ input[type=text]:focus {
 }
 
 button {
-  margin-left: -25px;
-  text-align: end;
+  text-align: center;
   height: 60px;
-  width: 180px;
-  border-radius: 10px;
-  padding-right: 30px;
+  width: 150px;
+  border-radius: 0px 10px 10px 0px;
+  padding: 10px;
   cursor: pointer;
   background: #ABD1DC;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size: large;
   font-weight: 600;
   color: white;
-  border: 1px solid #D3E7EE;
+  border: 1px solid #ABD1DC;
   transition: 0.5s;
 }
 
 button:hover {
   background: #7097AB;
+  border: 1px solid #7097AB;
   transition: 0.5s;
 }
 
@@ -128,7 +128,13 @@ button:hover {
   max-width: 500px;
   padding: 15px;
   border: 1px solid #ABD1DC;
+  border-radius: 5px 0px 0px 5px;
   outline: none;
+}
+
+.copy-container {
+  position: relative;
+  display: inline-block;
 }
 
 .clipboard {
@@ -136,8 +142,11 @@ button:hover {
   justify-content: center;
   align-items: center;
   height: 30px;
-  width: 60px;
+  width: 65px;
+  padding: 15px;
   background-color: #ABD1DC;
+  border: 1px solid #ABD1DC;
+  border-radius: 0px 5px 5px 0px;
   color: #FFFFFF;
   cursor: pointer;
   font-size: small;
@@ -146,7 +155,32 @@ button:hover {
 
 .clipboard:hover {
   background-color: #7097AB;
+  border: 1px solid #7097AB;
   transition: 0.5s;
+}
+
+.copied-popup {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #cacaca;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.copied-popup::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #cacaca transparent transparent transparent;
 }
 
 @media (prefers-color-scheme: light) {

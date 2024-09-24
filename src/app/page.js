@@ -8,6 +8,7 @@ export default function Home() {
   const [text, setText] = useState('');
   const [qrCode, setQrCode] = useState('');
   const [link, setLink] = useState('');
+  const [copied, setCopied] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,8 +22,6 @@ export default function Home() {
         },
         body: JSON.stringify({ text }),
     })
-    console.log('resLink: ', resLink.shortUrl);
-    console.log('resLink: ', typeof(resLink));
 
     const dataLink = await resLink.json();
 
@@ -36,6 +35,8 @@ export default function Home() {
 
   const copyLink = (e) => {
     navigator.clipboard.writeText(link)
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   }
 
   return (
@@ -64,7 +65,14 @@ export default function Home() {
             <div className='link-url'>
               <label href={link}> {link} </label>
             </div>
-            <div className='clipboard' onClick={copyLink}>COPY</div>
+            <div className="copy-container">
+              <div className='clipboard' onClick={copyLink}>COPY</div>
+              {copied && (
+                <div className='copied-popup'>
+                  Copied!
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
