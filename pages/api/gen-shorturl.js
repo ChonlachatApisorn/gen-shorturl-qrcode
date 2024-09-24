@@ -1,8 +1,8 @@
 import shortid from 'shortid';
 
-import { logger } from '../../../utils/loggerUtill';
 import { config } from '../../config/config';
 import datas from '../../databases/data';
+import { logger } from '../../utils/loggerUtill';
 
 export default async function handler(req, res) {
     logger.info(`generate short url route`)
