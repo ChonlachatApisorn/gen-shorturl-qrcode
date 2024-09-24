@@ -124,7 +124,8 @@ button:hover {
   justify-content: center;
   align-items: center;
   height: 30px;
-  width: 500px;
+  min-width: 340px;
+  max-width: 500px;
   border: 1px solid #ABD1DC;
   outline: none;
 }
