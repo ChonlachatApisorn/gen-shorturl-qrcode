@@ -126,6 +126,7 @@ button:hover {
   height: 30px;
   min-width: 340px;
   max-width: 500px;
+  padding: 15px;
   border: 1px solid #ABD1DC;
   outline: none;
 }
